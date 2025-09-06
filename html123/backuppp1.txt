@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>www.hondaphilippines.com.ph</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      text-decoration: none;
+      font-family: 'Segoe UI Black', sans-serif;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 15px 30px;
+      background: transparent;
+      z-index: 999;
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 50px;
+    }
+
+    .navbar ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+
+    .navbar ul li a {
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .navbar ul li a:hover {
+      color: #f4c24d;
+    }
+
+    .banner {
+      background-image: url("last na last na talaga.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding-bottom: 80px;
+    }
+
+    .learn-more-btn {
+      position: absolute;
+      bottom: 25px;
+      right: 30px;
+      background-color: #e60000;
+      color: white;
+      padding: 15px 25px;
+      font-size: 14px;
+      font-weight: bold;
+      border: none;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .learn-more-btn:hover {
+      background-color: #cc0000;
+    }
+
+    .cars-section {
+      background-image: url("steering wheel.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding-top: 120px;
+      height: 100vh;
+      width: 100%;
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      width: 960px;
+      height: 470px;
+      background: #F0E7C8;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      padding: 30px 40px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .sale-badge {
+      position: absolute;
+      top: 1px;
+      right: 23px;
+      background-color: #e60000;
+      color: white;
+      padding: 8px 14px;
+      font-size: 12px;
+      font-weight: bold;
+      border-radius: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      z-index: 10;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .title-section {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .title {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: grey;
+      margin-top: 3px;
+    }
+
+    .price {
+      font-size: 20px;
+      font-weight: bold;
+      color: #222;
+    }
+
+    .image {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 20px 0;
+    }
+
+    .image img {
+      max-height: 180px;
+      object-fit: contain;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .image img.zoomed {
+      transform: scale(2);
+    }
+
+    .info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      padding: 0 40px;
+    }
+
+    .info div {
+      text-align: center;
+    }
+
+    .details-link {
+      text-align: right;
+      font-size: 14px;
+      font-weight: bold;
+      text-decoration: none;
+      color: black;
+    }
+
+    .buttons {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .buttons button {
+      background: black;
+      color: white;
+      border: none;
+      padding: 8px;
+      border-radius: 50%;
+      font-size: 14px;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+    }
+
+    .footer {
+      background: rgba(0, 0, 0, 0.95);
+      color: white;
+      padding: 20px 8px 20px;
+      text-align: center;
+      width: 100%;
+      margin-top: 0px;
+    }
+
+    .footer-icons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 5px;
+    }
+
+    .footer-icons a {
+      color: white;
+      font-size: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    .footer-icons a:hover {
+      transform: scale(1.2);
+      color: #e60000;
+    }
+
+    .footer-text {
+      font-size: 10px;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+ //navigation bar
+
+
+  <nav class="navbar">
+    <div class="nav-content">
+      <div class="logo">
+        <img src="" alt="">
+      </div>
+      <ul>
+        <li><a href="#" onclick="showSection('home')">Home</a></li>
+        <li><a href="#" onclick="showSection('cars')">Cars</a></li>
+        <li><a href="#">Motors</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Features</a></li>
+        <li><a href="#">About Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+ // hompepage
+  <div class="banner" id="home-section">
+    <button class="learn-more-btn" onclick="showSection('cars')">Explore →</button>
+  </div>
+
+  //cars
+  <div class="cars-section" id="cars-section">
+    <div class="card">
+      <div class="sale-badge">BuyNow!!!</div>
+      <div class="buttons">
+        <button onclick="prevCar()">↑</button>
+        <button onclick="nextCar()">↓</button>
+      </div>
+
+      <div class="header">
+        <div class="title-section">
+          <div class="title" id="car-title">CIVIC</div>
+          <div class="subtitle" id="car-subtitle">TS</div>
+        </div>
+        <div class="price" id="car-price">$407,000</div>
+      </div>
+
+      <div class="image">
+        <img id="car-image" src="IMG_20250724_082736 (1).png" alt="Car" onclick="toggleZoom()">
+      </div>
+
+      <div class="info">
+        <div><div id="car-year">1995</div><div>Year</div></div>
+        <div><div id="car-mileage">6,686</div><div>Mileage</div></div>
+        <div><div id="car-hp">300</div><div>Horsepower</div></div>
+      </div>
+
+      <a href="#" class="details-link">Full details →</a>
+    </div>
+  </div>
+
+  //footer
+
+  <footer class="footer">
+    <div class="footer-icons">
+      <a href="https://www.facebook.com/Honda" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/honda/" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@honda" target="_blank"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-text">© 2025 Honda Philippines. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const homeSection = document.getElementById('home-section');
+    const carsSection = document.getElementById('cars-section');
+
+    function showSection(section) {
+      if (section === 'home') {
+        homeSection.style.display = 'flex';
+        carsSection.style.display = 'none';
+      } else if (section === 'cars') {
+        homeSection.style.display = 'none';
+        carsSection.style.display = 'flex';
+      }
+    }
+
+    const cars = [
+      {
+        title: 'CIVIC',
+        subtitle: 'Type R',
+        price: '$407,000',
+        image: 'IMG_20250724_082736 (1).png',
+        year: '1997',
+        mileage: '28',
+        hp: '184'
+      },
+      {
+        title: 'City',
+        subtitle: 'RS',
+        price: '₱ 973,000',
+        image: 'city honda.png',
+        year: '1981',
+        mileage: '20',
+        hp: '119'
+      },
+      {
+        title: 'Brio',
+        subtitle: 'Dynamic',
+        price: '₱670,000',
+        image: '36db2ed467dcbba3f7e3831519e23473.png',
+        year: '1998',
+        mileage: '4,900',
+        hp: '492'
+      },
+      {
+        title: 'Vezel',
+        subtitle: 'Roadster',
+        price: '₱ 1,350,000',
+        image: '2023-vezel-honda-zy48p7776h07phn8loeo7q.png',
+        year: '1998',
+        mileage: '42',
+        hp: '288'
+      },
+      {
+        title: 'ZR-V',
+        subtitle: 'VT',
+        price: '₱2,350,000',
+        image: 'cc8ddf4d46ae8942fc98a43f4310d1d9 (1).png',
+        year: '1998',
+        mileage: '4,900',
+        hp: '492'
+      }
+    ];
+
+    let currentIndex = 0;
+
+    function updateCar(index) {
+      const car = cars[index];
+      const image = document.getElementById('car-image');
+      image.classList.remove('zoomed');
+      document.getElementById('car-title').textContent = car.title;
+      document.getElementById('car-subtitle').textContent = car.subtitle;
+      document.getElementById('car-price').textContent = car.price;
+      image.src = car.image;
+      document.getElementById('car-year').textContent = car.year;
+      document.getElementById('car-mileage').textContent = car.mileage;
+      document.getElementById('car-hp').textContent = car.hp;
+    }
+
+    function nextCar() {
+      currentIndex = (currentIndex + 1) % cars.length;
+      updateCar(currentIndex);
+    }
+
+    function prevCar() {
+      currentIndex = (currentIndex - 1 + cars.length) % cars.length;
+      updateCar(currentIndex);
+    }
+
+    function toggleZoom() {
+      const image = document.getElementById('car-image');
+      image.classList.toggle('zoomed');
+    }
+
+    updateCar(currentIndex);
+    showSection('home');
+  </script>
+</body>
+</html>

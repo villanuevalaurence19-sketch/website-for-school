@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Honda Services</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100vh; /* full screen height */
+      background-image: url("bgforcars.png"); 
+      color: #333;
+      overflow: hidden; /* no scrolling */
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 0.3rem 0.8rem; /* mas maliit padding */
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e60000; /* mas manipis */
+    }
+
+    .navbar-left img {
+      height: 28px; /* mas maliit na logo */
+    }
+
+    .navbar-right {
+      display: flex;
+      gap: 1rem; /* mas dikit-dikit */
+      position: relative;
+    }
+
+    .nav-item {
+      text-align: center;
+      color: white;
+      text-decoration: none;
+      font-size: 0.55rem; /* mas maliit text */
+      transition: 0.3s ease;
+    }
+
+    .nav-item i {
+      font-size: 0.9rem; /* mas maliit icon */
+      display: block;
+      margin-bottom: 1px;
+    }
+
+    .nav-item:hover {
+      color: #e60000;
+      transform: translateY(-2px);
+    }
+
+    .nav-item.active {
+      color: #e60000;
+    }
+
+    /* Section Title */
+    .services-title {
+      font-size: 26px;
+      font-weight: bold;
+      color: white;
+      text-align: center;
+      margin-top: 70px; /* para hindi dumikit sa navbar */
+      margin-bottom: 15px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+      position: relative;
+    }
+
+    .services-title::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: #e60000;
+      margin: 8px auto 0;
+      border-radius: 2px;
+    }
+
+    /* Main content - services centered */
+    .services {
+      flex: 1; /* take available space */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: -40px;
+    }
+
+    .swiper {
+      width: 100%;
+      max-width: 575px; /* konting liit */
+      height: 370px; /* mas mababa */
+      margin-bottom: 40px; 
+      position: relative; /* para sa pagination */
+    }
+
+    .swiper-slide {
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .swiper-slide img {
+      max-width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .swiper-slide h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: #b80000;
+    }
+
+    .swiper-slide p {
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    .swiper-slide button {
+      background: #b80000;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .swiper-slide button:hover {
+      background: #900000;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      color: white;
+      text-align: center;
+      font-size: 0.75rem;
+      padding: 4px;
+    }
+
+    .footer-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 5px;
+    }
+
+    .footer-icons a {
+      color: white;
+      font-size: 1.2rem;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+    }
+
+    .modal-content h2 {
+      margin-bottom: 15px;
+    }
+
+    .modal-content input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .close {
+      float: right;
+      font-size: 22px;
+      cursor: pointer;
+      color: #b80000;
+    }
+
+    .close:hover {
+      color: black;
+    }
+
+   
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <!-- LOGO -->
+    <div class="navbar-left">
+      <img src="fa49dcaf6ae263e7e796590c6c610cd4.png" alt="Honda Logo">
+    </div>
+
+    <!-- NAV ICONS -->
+    <div class="navbar-right">
+      <a href="momeee.html" class="nav-item active">
+        <i class="fa-solid fa-house"></i>
+        Home
+      </a>
+
+      <!-- DROPDOWN FOR CARS -->
+      <div class="nav-dropdown">
+        <a href="momeee.html" class="nav-item">
+          <i class="fa-solid fa-car"></i>
+          Cars
+        </a>
+        <ul id="car-submenu"></ul>
+      </div>
+
+      <a href="motor.html" class="nav-item">
+        <i class="fa-solid fa-motorcycle"></i>
+        Motors
+      </a>
+      <a href="service.html" class="nav-item">
+        <i class="fa-solid fa-screwdriver-wrench"></i>
+        Services
+      </a>
+      <a href="contact.html" class="nav-item">
+        <i class="fa-solid fa-envelope"></i>
+        Contact
+      </a>
+      <a href="about.html" class="nav-item">
+        <i class="fa-solid fa-circle-info"></i>
+        About
+      </a>
+    </div>
+  </nav>
+
+  <!-- Title -->
+  <h2 class="services-title">Our Services</h2>
+
+  <!-- Services Carousel -->
+  <section class="services">
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <!-- Services Slides -->
+        <div class="swiper-slide"><img src="tire rotation.jpg"><h3>Tire Rotation</h3><p>₱800 - Extends tire life.</p><button onclick="openModal('Tire Rotation')">Avail</button></div>
+        <div class="swiper-slide"><img src="Battery.jpg"><h3>Battery Service</h3><p>₱3,500 - Reliable starting power.</p><button onclick="openModal('Battery Service')">Avail</button></div>
+        <div class="swiper-slide"><img src="brake.jpg"><h3>Brake Service</h3><p>₱3,000 - Ensures safe braking.</p><button onclick="openModal('Brake Service')">Avail</button></div>
+        <div class="swiper-slide"><img src="A-C repair.jpg"><h3>AC Repair</h3><p>₱4,000 - Keeps your aircon cool.</p><button onclick="openModal('AC Repair')">Avail</button></div>
+        <div class="swiper-slide"><img src="transmission repair.jpg"><h3>Transmission Repair</h3><p>₱8,000 - Smooth gear shifting.</p><button onclick="openModal('Transmission Repair')">Avail</button></div>
+        <div class="swiper-slide"><img src="emgine overhaul.jpg"><h3>Engine Overhaul</h3><p>₱15,000 - Restores engine performance.</p><button onclick="openModal('Engine Overhaul')">Avail</button></div>
+        <div class="swiper-slide"><img src="suspension repair.jpg"><h3>Suspension Repair</h3><p>₱5,500 - Smooth and stable ride.</p><button onclick="openModal('Suspension Repair')">Avail</button></div>
+        <div class="swiper-slide"><img src="electric repair.jpg"><h3>Electrical Repair</h3><p>₱4,800 - Fix wiring & lights.</p><button onclick="openModal('Electrical Repair')">Avail</button></div>
+        <div class="swiper-slide"><img src="carwash full.jpg"><h3>Full Car Wash</h3><p>₱500 - Exterior wash & dry.</p><button onclick="openModal('Full Car Wash')">Avail</button></div>
+        <div class="swiper-slide"><img src="interior detailing.jpg"><h3>Interior Detailing</h3><p>₱1,500 - Deep clean inside.</p><button onclick="openModal('Interior Detailing')">Avail</button></div>
+        <div class="swiper-slide"><img src="wax-polish coating.jpg"><h3>Wax & Polish</h3><p>₱1,200 - Shine & protect.</p><button onclick="openModal('Wax & Polish')">Avail</button></div>
+        <div class="swiper-slide"><img src="ceramic coating.jpg"><h3>Ceramic Coating</h3><p>₱8,000 - Long-term paint protection.</p><button onclick="openModal('Ceramic Coating')">Avail</button></div>
+        <div class="swiper-slide"><img src="headlight restoration.jpg"><h3>Headlight Restoration</h3><p>₱700 - Clear & bright lights.</p><button onclick="openModal('Headlight Restoration')">Avail</button></div>
+        <div class="swiper-slide"><img src="audio.jpg"><h3>Audio Upgrade</h3><p>₱12,000 - Premium sound.</p><button onclick="openModal('Audio Upgrade')">Avail</button></div>
+        <div class="swiper-slide"><img src="body kit.jpg"><h3>Body Kit Installation</h3><p>₱20,000 - Sporty appearance.</p><button onclick="openModal('Body Kit Installation')">Avail</button></div>
+        <div class="swiper-slide"><img src="wheel alloy.jpg"><h3>Alloy Wheel Upgrade</h3><p>₱18,000 - Stylish & durable.</p><button onclick="openModal('Alloy Wheel Upgrade')">Avail</button></div>
+        <div class="swiper-slide"><img src="tinted cars.jpg"><h3>Window Tinting</h3><p>₱4,000 - UV protection.</p><button onclick="openModal('Window Tinting')">Avail</button></div>
+  
+      </div>
+
+      <!-- Swiper Controls -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+     
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-icons">
+      <a href="https://www.facebook.com/Honda" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/honda/" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@honda" target="_blank"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p>© 2025 Honda Philippines. All rights reserved.</p>
+    <p>This website is for project purposes only</p>
+  </footer>
+
+  <!-- Booking Modal -->
+  <div id="bookingModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="serviceTitle">Book Service</h2>
+      <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <input type="date" required>
+        <button type="submit">Confirm Booking</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    // Swiper Init
+    const swiper = new Swiper('.swiper', {
+      effect: 'fade',
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+         });
+
+    // Modal
+    function openModal(service) {
+      document.getElementById("bookingModal").style.display = "flex";
+      document.getElementById("serviceTitle").innerText = "Book: " + service;
+    }
+
+    function closeModal() {
+      document.getElementById("bookingModal").style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      let modal = document.getElementById("bookingModal");
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+
+</body>
+</html>

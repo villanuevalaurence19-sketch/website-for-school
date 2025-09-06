@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>www.hondaphilippines.com.ph</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            font-family: Segoe UI Black ;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .banner {
+            background-image: url("last na to.png"); 
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 100vh; 
+            width: 100%;
+        }
+
+        .navbar {
+            background: transparent; 
+            padding: 15px 30px;
+        }
+
+        .navdiv {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo img {
+            height: 100px;
+            
+      
+        }
+
+        ul {
+            display: flex;
+            align-items: center;
+        }
+
+        li {
+            list-style: none;
+            display: inline-block;
+        }
+
+        li a {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            margin-right: 25px;
+        }
+
+        button {
+            background-color: black;
+            margin-left: 10px;
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            width: 90px;
+            cursor: pointer;
+        }
+
+        button a {
+            color: white;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <nav class="navbar">
+            <div class="navdiv">
+                <div class="logo"><a href="#"><img src=""></a></div>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Cars</a></li>
+                    <li><a href="#">Motors</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#"><img src ="123.png"></a></li>
+                    
+                </ul>
+            </div>
+        </nav>
+    </div>
+</body>
+</html>

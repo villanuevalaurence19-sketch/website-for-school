@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Honda Motorcycles Store</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      text-decoration: none;
+      font-family: "Segoe UI Black", sans-serif;
+    }
+    body {
+      background: url("bgforcars.png") no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      padding-top: 70px;
+      padding-bottom: 60px;
+      position: relative;
+      color: white;
+    }
+	
+   /* NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 0.3rem 0.8rem;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e60000;
+    }
+
+    .navbar-left img {
+      height: 28px;
+    }
+
+    .navbar-right {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav-item {
+      text-align: center;
+      color: white;
+      text-decoration: none;
+      font-size: 0.55rem;
+      transition: 0.3s ease;
+    }
+
+    .nav-item i {
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 1px;
+    }
+
+    .nav-item:hover {
+      color: #e60000;
+      transform: translateY(-2px);
+    }
+
+    .nav-item.active {
+      color: #e60000;
+    }
+ 
+    /* Showroom Grid Cards */
+    .showroom {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1300px;
+      margin: auto;
+    }
+
+    .bike-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+      transition: 0.3s ease;
+    }
+
+    .bike-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 6px 25px rgba(255, 0, 0, 0.6);
+    }
+
+    .bike-card img {
+      width: 100%;           
+      height: 200px;         
+      object-fit: contain;    
+      display: block;
+      background: #fff;
+      padding: 10px;
+      transition: transform 0.4s ease;
+    }
+
+    .bike-card:hover img {
+      transform: scale(1.1); 
+    }
+
+    .bike-info {
+      padding: 15px;
+      text-align: center;
+    }
+    .bike-info h3 {
+      margin-bottom: 5px;
+      font-size: 1.2rem;
+      color: #e60000;
+    }
+    .bike-info p {
+      color: #333;
+    }
+
+    .bike-specs {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: #555;
+      margin-top: 8px;
+    }
+
+    /* Footer */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      color: white;
+      text-align: center;
+      font-size: 0.75rem;
+      padding: 4px;
+    }
+
+    .footer-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 5px;
+    }
+
+    .footer-icons a {
+      color: white;
+      font-size: 1.2rem;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+      animation: fadeIn 0.3s ease;
+      color: #222;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.9);}
+      to {opacity: 1; transform: scale(1);}
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 16px;
+      font-size: 24px;
+      color: red;
+      cursor: pointer;
+    }
+    .modal img {
+      width: 100%;
+      max-height: 250px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+    .action-btn {
+      background: #333;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin: 5px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .action-btn:hover {
+      background: #555;
+    }
+    #motorDescription {
+      margin-top: 10px;
+      color: #444;
+      font-size: 0.9rem;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-left">
+      <img src="fa49dcaf6ae263e7e796590c6c610cd4.png" alt="Honda Logo">
+    </div>
+
+    <div class="navbar-right">
+      <a href="momeee.html" class="nav-item active">
+        <i class="fa-solid fa-house"></i>
+        Home
+      </a>
+      <a href="momeee.html" class="nav-item">
+        <i class="fa-solid fa-car"></i>
+        Cars
+      </a>
+      <a href="motor.html" class="nav-item">
+        <i class="fa-solid fa-motorcycle"></i>
+        Motors
+      </a>
+      <a href="service.html" class="nav-item">
+        <i class="fa-solid fa-screwdriver-wrench"></i>
+        Services
+      </a>
+      <a href="contact.html" class="nav-item">
+        <i class="fa-solid fa-envelope"></i>
+        Contact
+      </a>
+      <a href="about.html" class="nav-item">
+        <i class="fa-solid fa-circle-info"></i>
+        About
+      </a>
+    </div>
+  </nav>
+
+  <!-- Showroom Section -->
+  <section class="showroom" id="showroomGrid"></section>
+
+  <!-- Modal -->
+  <div class="modal" id="showroomModal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h2 id="motorTitle"></h2>
+      <img id="motorImage" src="" alt="" />
+      <p id="motorPrice"></p>
+      <div>
+        <button class="action-btn" onclick="buyNow()">Buy Now</button>
+        <button class="action-btn" onclick="toggleDetails()">Full Details</button>
+      </div>
+      <p id="motorDescription"></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-icons">
+      <a href="https://www.facebook.com/Honda" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/honda/" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@honda" target="_blank"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p>© 2025 Honda Philippines. All rights reserved.</p>
+	 <p>This website is for project purposes only</p>
+  </footer>
+
+ <script>
+    const motorData = {
+      "Honda CB650R": [
+        {img: "20250812_020254_0000 (3).png", price: "₱501,000.00", desc: "Modern naked bike with a powerful 649cc engine.", hp: "94 HP", cc: "649cc"}
+      ],
+      "Honda Click 125i": [
+        {img: "20250812_020029_0000 (1).png", price: "₱80,900.00", desc: "Stylish scooter with great fuel efficiency.", hp: "11 HP", cc: "125cc"}
+      ],
+      "Honda ADV 160": [
+        {img: "20250812_015208_0000 (2).png", price: "₱164,900.00", desc: "Adventure scooter for city and off-road.", hp: "15.8 HP", cc: "160cc"}
+      ],
+      "Honda Giorno": [
+        {img: "20250812_021037_0000 (1).png", price: "₱354,000.00", desc: "Retro-style scooter with modern tech.", hp: "4.5 HP", cc: "50cc"}
+      ],
+      "Honda PCX 160": [
+        {img: "20250812_013456_0000 (1).png", price: "₱133,900.00", desc: "Premium scooter with advanced features.", hp: "15.8 HP", cc: "160cc"}
+      ],
+      "Honda XR155 DSX": [
+        {img: "20250812_013605_0000 (1).png", price: "₱72,900.00", desc: "Versatile underbone motorcycle for all roads.", hp: "9 HP", cc: "150cc"}
+      ],
+      "Honda CRF150L": [
+        {img: "20250812_013605_0000 (1).png", price: "₱149,900.00", desc: "Off-road motorcycle built for adventures.", hp: "12 HP", cc: "150cc"}
+      ],
+      "Honda Wave 110 Alpha": [
+        {img: "20250812_013642_0000 (1).png", price: "₱56,900.00", desc: "Affordable and fuel-efficient commuter bike.", hp: "8 HP", cc: "110cc"}
+      ],
+      "Honda Supra GTR 150": [
+        {img: "20250812_013826_0000 (1).png", price: "₱102,900.00", desc: "High-performance underbone bike.", hp: "15.4 HP", cc: "150cc"}
+      ],
+      "Honda Forza 350": [
+        {img: "20250812_013852_0000 (1).png", price: "₱244,000.00", desc: "Touring scooter with premium comfort.", hp: "29 HP", cc: "330cc"}
+      ],
+      "Honda Rebel 500": [
+        {img: "rabel1.png", price: "₱375,000.00", desc: "Cruiser motorcycle with a modern design.", hp: "47 HP", cc: "471cc"}
+      ]
+    };
+
+    let currentMotor = "";
+
+    function renderShowroom() {
+      const container = document.getElementById("showroomGrid");
+      for (let motor in motorData) {
+        const bike = motorData[motor][0];
+        container.innerHTML += `
+          <div class="bike-card" onclick="openShowroom('${motor}')">
+            <img src="${bike.img}" alt="${motor}">
+            <div class="bike-info">
+              <h3>${motor}</h3>
+              <p>${bike.desc}</p>
+              <p><strong>${bike.price}</strong></p>
+              <div class="bike-specs">
+                <span>${bike.hp}</span>
+                <span>${bike.cc}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function openShowroom(name) {
+      currentMotor = name;
+      updateShowroom();
+      document.getElementById("showroomModal").style.display = "flex";
+    }
+
+    function updateShowroom() {
+      const motor = motorData[currentMotor][0];
+      document.getElementById("motorTitle").textContent = currentMotor;
+      document.getElementById("motorImage").src = motor.img;
+      document.getElementById("motorPrice").textContent = motor.price;
+      document.getElementById("motorDescription").textContent = motor.desc;
+      document.getElementById("motorDescription").style.display = "none";
+    }
+
+    function closeModal() {
+      document.getElementById("showroomModal").style.display = "none";
+    }
+
+    function buyNow() {
+      alert(`You have successfully purchased ${currentMotor} - ${motorData[currentMotor][0].price}`);
+    }
+
+    function toggleDetails() {
+      const desc = document.getElementById("motorDescription");
+      desc.style.display = desc.style.display === "none" ? "block" : "none";
+    }
+
+    renderShowroom();
+  </script>
+</body>
+</html>

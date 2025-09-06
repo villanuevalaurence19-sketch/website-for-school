@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>www.hondaphilippines.com.ph</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI Black', sans-serif;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 0.3rem 0.8rem;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e60000;
+    }
+
+    .navbar-left img { height: 28px; }
+    .navbar-right { display: flex; gap: 1rem; position: relative; }
+    .nav-item {
+      text-align: center;
+      color: white;
+      text-decoration: none;
+      font-size: 0.55rem;
+      transition: 0.3s ease;
+    }
+    .nav-item i { font-size: 0.9rem; display: block; margin-bottom: 1px; }
+    .nav-item:hover { color: #e60000; transform: translateY(-2px); }
+    .nav-item.active { color: #e60000; }
+
+    /* Submenu */
+    #car-submenu {
+      display: none;
+      position: absolute;
+      top:20px;
+      left: 0;
+      background: rgba(0,0,0,0.9);
+      padding: 6px 0;
+      margin: 0;
+      border-radius: 6px;
+      list-style: none;
+      min-width: 100px;
+    }
+    #car-submenu li { margin: 0; padding: 4px 10px; }
+    #car-submenu li a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.7rem;
+      display: block;
+      padding: 5px 10px;
+    }
+    #car-submenu li a:hover {
+      color: #e60000;
+      background: rgba(255,255,255,0.05);
+    }
+    .nav-dropdown:hover #car-submenu { display: block; }
+
+    .banner {
+      background: url('forhome.png') no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .learn-more-btn {
+      position: absolute;
+      bottom: 75px;
+      right: 20px;
+      background-color: #e60000;
+      color: white;
+      padding: 12px 20px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+    }
+
+    .cars-section {
+      background: url("bgforcars.png") no-repeat center center/cover;
+      height: 90vh;
+      padding: 80px 20px 40px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .card {
+      background: #F0E7C8;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      padding: 30px 60px;
+      display: none;
+      flex-direction: column;
+      max-width: 950px;
+      width: 100%;
+      position: relative;
+      min-height: 480px;
+      margin-top: 20px;
+    }
+
+    .sale-badge {
+      position: absolute;
+      top: 0px;
+      right: 20px;
+      background-color: #e60000;
+      color: white;
+      padding: 8px 14px;
+      font-size: 12px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+    .sale-badge:hover { background-color: #b30000; transform: scale(1.05); }
+
+    .header { display: flex; justify-content: space-between; flex-wrap: wrap; }
+    .image img { width: 100%; max-height: 250px; object-fit: contain; cursor: pointer; }
+
+    .buttons {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .buttons button {
+      background: black;
+      color: white;
+      border: none;
+      padding: 8px;
+      border-radius: 50%;
+      font-size: 14px;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      color: white;
+      text-align: center;
+      font-size: 0.75rem;
+      padding: 4px;
+    }
+    .footer-icons { display: flex; justify-content: center; gap: 15px; margin-bottom: 5px; }
+    .footer-icons a { color: white; font-size: 1.2rem; }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 500px;
+      width: 90%;
+      position: relative;
+      text-align: center;
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 16px;
+      font-size: 24px;
+      color: #e60000;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-left">
+      <img src="fa49dcaf6ae263e7e796590c6c610cd4.png" alt="Honda Logo">
+    </div>
+    <div class="navbar-right">
+      <a href="momeee.html" class="nav-item active"><i class="fa-solid fa-house"></i>Home</a>
+      <div class="nav-dropdown">
+        <a href="momeee.html" class="nav-item"><i class="fa-solid fa-car"></i>Cars</a>
+        <ul id="car-submenu"></ul>
+      </div>
+      <a href="motor.html" class="nav-item"><i class="fa-solid fa-motorcycle"></i>Motors</a>
+      <a href="service.html" class="nav-item"><i class="fa-solid fa-screwdriver-wrench"></i>Services</a>
+      <a href="contact.html" class="nav-item"><i class="fa-solid fa-envelope"></i>Contact</a>
+      <a href="about.html" class="nav-item"><i class="fa-solid fa-circle-info"></i>About</a>
+    </div>
+  </nav>
+
+  <!-- BANNER -->
+  
+
+<div class="banner" id="home-section">
+  <button class="learn-more-btn" onclick="window.location.href='https://hondaph.com/'">
+    Explore →
+  </button>
+</div>
+
+
+
+
+  <!-- CARS SECTION -->
+  <div class="cars-section" id="cars-section">
+    <div class="card" id="car-card">
+      <button class="sale-badge" onclick="buyCar()">Buy Now</button>
+      <div class="buttons">
+        <button onclick="prevCar()">↑</button>
+        <button onclick="nextCar()">↓</button>
+      </div>
+      <div class="header">
+        <div>
+          <div id="car-title" style="font-size: 1.5rem; font-weight: bold;">Civic</div>
+          <div id="car-subtitle" style="color: gray;">Type R</div>
+        </div>
+        <div id="car-price" style="font-weight: bold; font-size: 1.2rem;">₱407,000</div>
+      </div>
+      <div class="image"><img id="car-image" src="" onclick="toggleZoom()"></div>
+      <div class="info" style="display: flex; justify-content: space-around; margin-top: 15px;">
+        <div><div id="car-year">1997</div><div>Year</div></div>
+        <div><div id="car-mileage">28</div><div>Mileage</div></div>
+        <div><div id="car-hp">184</div><div>Horsepower</div></div>
+      </div>
+      <div style="margin-top: 15px; text-align: right; cursor: pointer;" onclick="showFullDetails()">Full details →</div>
+    </div>
+  </div>
+
+  <!-- FULL DETAILS MODAL -->
+  <div class="modal" id="details-modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h2 id="modal-title"></h2>
+      <img id="modal-image" src="" style="width: 100%; max-height: 250px; object-fit: contain;">
+      <p><strong>Subtitle:</strong> <span id="modal-subtitle"></span></p>
+      <p><strong>Price:</strong> <span id="modal-price"></span></p>
+      <p><strong>Year:</strong> <span id="modal-year"></span></p>
+      <p><strong>Mileage:</strong> <span id="modal-mileage"></span></p>
+      <p><strong>Horsepower:</strong> <span id="modal-hp"></span></p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-icons">
+      <a href="https://www.facebook.com/Honda" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/honda/" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@honda" target="_blank"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p>© 2025 Honda Philippines. All rights reserved.</p>
+    <p>This website is for project purposes only</p>
+  </footer>
+
+  <script>
+    const homeSection = document.getElementById('home-section');
+    const carsSection = document.getElementById('cars-section');
+    const carCard = document.getElementById('car-card');
+
+    const cars = [
+      { title: 'Civic', subtitle: 'Type R', price: '₱407,000.00', image: 'IMG_20250724_082736 (1).png', year: '1997', mileage: '28', hp: '184' },
+      { title: 'Civic', subtitle: 'Si', price: '₱379,000.00', image: 'SI.png', year: '1996', mileage: '43', hp: '160' },
+      { title: 'Civic', subtitle: 'Hatchback Turbo', price: '₱1,198,000.00', image: 'hatchback.png', year: '2022', mileage: '9,000', hp: '176' },
+      { title: 'Civic', subtitle: 'V Turbo CVT', price: '₱1,160,000.00', image: 'honda-civic-canyon-river-blue-671b6999c9afd.png', year: '2023', mileage: '5,800', hp: '178' },
+      { title: 'Civic', subtitle: 'S Turbo CVT', price: '₱1,008,000.00', image: 'CivicS.png', year: '2024', mileage: '2,300', hp: '175' },
+      { title: 'City', subtitle: 'RS', price: '₱973,000.00', image: 'city honda.png', year: '1981', mileage: '20', hp: '119' },
+      { title: 'Brio', subtitle: 'Dynamic', price: '₱670,000.00', image: '36db2ed467dcbba3f7e3831519e23473.png', year: '1998', mileage: '4,900', hp: '492' },
+      { title: 'Vezel', subtitle: 'Roadster', price: '₱1,350,000.00', image: '2023-vezel-honda-zy48p7776h07phn8loeo7q.png', year: '1998', mileage: '42', hp: '288' },
+      { title: 'ZR-V', subtitle: 'VT', price: '₱2,350,000.00', image: 'cc8ddf4d46ae8942fc98a43f4310d1d9 (1).png', year: '1998', mileage: '4,900', hp: '492' }
+    ];
+
+    let currentModels = [];
+    let currentIndex = 0;
+
+    const carGroups = {};
+    cars.forEach(car => {
+      if (!carGroups[car.title]) carGroups[car.title] = [];
+      carGroups[car.title].push(car);
+    });
+
+    const submenu = document.getElementById('car-submenu');
+    Object.keys(carGroups).forEach(title => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.textContent = title;
+      a.onclick = () => {
+        currentModels = carGroups[title];
+        currentIndex = 0;
+        updateCar(currentIndex);
+        showSection('cars');
+      };
+      li.appendChild(a);
+      submenu.appendChild(li);
+    });
+
+    function showSection(section) {
+      homeSection.style.display = section === 'home' ? 'flex' : 'none';
+      carsSection.style.display = section === 'cars' ? 'flex' : 'none';
+      carCard.style.display = 'flex';
+    }
+
+    function updateCar(index) {
+      const car = currentModels[index];
+      document.getElementById('car-title').textContent = car.title;
+      document.getElementById('car-subtitle').textContent = car.subtitle;
+      document.getElementById('car-price').textContent = car.price;
+      document.getElementById('car-image').src = car.image;
+      document.getElementById('car-year').textContent = car.year;
+      document.getElementById('car-mileage').textContent = car.mileage;
+      document.getElementById('car-hp').textContent = car.hp;
+    }
+
+    function nextCar() {
+      currentIndex = (currentIndex + 1) % currentModels.length;
+      updateCar(currentIndex);
+    }
+    function prevCar() {
+      currentIndex = (currentIndex - 1 + currentModels.length) % currentModels.length;
+      updateCar(currentIndex);
+    }
+
+    function toggleZoom() {
+      const img = document.getElementById('car-image');
+      img.classList.toggle('zoomed');
+    }
+
+    function showFullDetails() {
+      const car = currentModels[currentIndex];
+      document.getElementById('modal-title').textContent = car.title + ' - ' + car.subtitle;
+      document.getElementById('modal-subtitle').textContent = car.subtitle;
+      document.getElementById('modal-price').textContent = car.price;
+      document.getElementById('modal-year').textContent = car.year;
+      document.getElementById('modal-mileage').textContent = car.mileage;
+      document.getElementById('modal-hp').textContent = car.hp;
+      document.getElementById('modal-image').src = car.image;
+      document.getElementById('details-modal').style.display = 'flex';
+    }
+    function closeModal() { document.getElementById('details-modal').style.display = 'none'; }
+
+    // BUY NOW FUNCTION
+    function buyCar() {
+      const car = currentModels[currentIndex];
+      alert("✅ You have successfully bought the " + car.title + " " + car.subtitle + " for " + car.price + "!");
+
+      // Alisin sa list yung nabili
+      currentModels.splice(currentIndex, 1);
+
+      if (currentModels.length > 0) {
+        if (currentIndex >= currentModels.length) currentIndex = 0;
+        updateCar(currentIndex);
+      } else {
+        // SOLD OUT
+        document.getElementById('car-title').textContent = "SOLD OUT";
+        document.getElementById('car-subtitle').textContent = "";
+        document.getElementById('car-price').textContent = "—";
+        document.getElementById('car-image').src = "";
+        document.getElementById('car-year').textContent = "-";
+        document.getElementById('car-mileage').textContent = "-";
+        document.getElementById('car-hp').textContent = "-";
+
+        const badge = document.querySelector('.sale-badge');
+        badge.textContent = "SOLD OUT";
+        badge.style.backgroundColor = "gray";
+        badge.style.cursor = "not-allowed";
+        badge.onclick = null;
+
+	}
+}
+
+  </script>
+</body>
+</html>

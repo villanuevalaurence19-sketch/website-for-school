@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Honda Philippines</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI Black', sans-serif;
+    }
+
+
+
+    body {
+      background-image: url("bgforcars.png"); 
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+    }
+
+   
+
+
+/* NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 0.3rem 0.8rem; /* mas maliit padding */
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e60000; /* mas manipis */
+    }
+
+    .navbar-left img {
+      height: 28px; /* mas maliit na logo */
+    }
+
+    .navbar-right {
+      display: flex;
+      gap: 1rem; /* mas dikit-dikit */
+    }
+
+    .nav-item {
+      text-align: center;
+      color: white;
+      text-decoration: none;
+      font-size: 0.55rem; /* mas maliit text */
+      transition: 0.3s ease;
+    }
+
+    .nav-item i {
+      font-size: 0.9rem; /* mas maliit icon */
+      display: block;
+      margin-bottom: 1px;
+    }
+
+    .nav-item:hover {
+      color: #e60000;
+      transform: translateY(-2px);
+    }
+
+    .nav-item.active {
+      color: #e60000;
+    }
+
+    /* ===== CONTACT INFO ===== */
+    .contact-container {
+      max-width: 800px;
+      margin: 120px auto 50px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .contact-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: red;
+    }
+    .contact-container p {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .contact-container ul {
+      list-style: none;
+      padding-left: 0;
+      line-height: 1.8;
+    }
+    .contact-container a {
+      color: red;
+      text-decoration: none;
+    }
+    .contact-container a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== FOOTER ===== */
+  .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      color: white;
+      text-align: center;
+      font-size: 0.75rem;
+      padding: 4px;
+    }
+
+    .footer-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 5px;
+    }
+
+    .footer-icons a {
+      color: white;
+      font-size: 1.2rem;
+    }
+
+  </style>
+</head>
+<body>
+
+ 
+
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <!-- LOGO -->
+    <div class="navbar-left">
+      <img src="fa49dcaf6ae263e7e796590c6c610cd4.png" alt="Honda Logo">
+    </div>
+
+    <!-- NAV ICONS -->
+    <div class="navbar-right">
+      <a href="momeee.html" class="nav-item active">
+        <i class="fa-solid fa-house"></i>
+        Home
+      </a>
+
+      <!-- DROPDOWN FOR CARS -->
+      <div class="nav-dropdown">
+        <a href="momeee.html" class="nav-item">
+          <i class="fa-solid fa-car"></i>
+          Cars
+        </a>
+        <ul id="car-submenu"></ul>
+      </div>
+
+      <a href="motor.html" class="nav-item">
+        <i class="fa-solid fa-motorcycle"></i>
+        Motors
+      </a>
+      <a href="service.html" class="nav-item">
+        <i class="fa-solid fa-screwdriver-wrench"></i>
+        Services
+      </a>
+      <a href="contact.html" class="nav-item">
+        <i class="fa-solid fa-envelope"></i>
+        Contact
+      </a>
+      <a href="about.html" class="nav-item">
+        <i class="fa-solid fa-circle-info"></i>
+        About
+      </a>
+    </div>
+  </nav>
+
+
+  
+
+
+  <div class="contact-container">
+    <h2>Contact Us</h2>
+    <p>Need assistance? You can reach Honda Philippines through any of the following channels:</p>
+    <ul>
+      <li><strong>PLDT Toll-Free:</strong> <a href="tel:1800104663274">1-800-10-HONDAPH (1-800-10-4663274)</a></li>
+      <li><strong>Landline:</strong> <a href="tel:+63285816700">(02) 8581-6700 to 6799</a></li>
+      <li><strong>Mobile:</strong> <a href="tel:+639178846632">0917-88-HONDA (0917-88-46632)</a></li>
+      <li><strong>Email:</strong> <a href="mailto:customerservice@hondaph.com">customerservice@hondaph.com</a></li>
+      <li><strong>Address:</strong><br>
+        Honda Philippines, Inc.<br>
+        Lot 34, Phase 1-B, Road 3, First Philippine Industrial Park,<br>
+        Tanauan City, Batangas 4232, Philippines
+      </li>
+    </ul>
+  </div>
+
+ 
+
+
+
+  <footer class="footer">
+    <div class="footer-icons">
+      <a href="https://www.facebook.com/Honda" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/honda/" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@honda" target="_blank"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p>© 2025 Honda Philippines. All rights reserved.</p>
+	 <p>This website is for project purposes only</p>
+
+  </footer>
+
+</body>
+</html>

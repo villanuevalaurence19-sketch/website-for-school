@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Honda Timeline</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: url("bgforcars.png") no-repeat center center fixed; 
+      background-size: cover; 
+      color: #333;
+      line-height: 1.6;
+
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* buong taas ng screen */
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 0.3rem 0.8rem; /* mas maliit padding */
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e60000; /* mas manipis */
+    }
+
+    .navbar-left img {
+      height: 28px; /* mas maliit na logo */
+    }
+
+    .navbar-right {
+      display: flex;
+      gap: 1rem; /* mas dikit-dikit */
+      position: relative;
+    }
+
+    .nav-item {
+      text-align: center;
+      color: white;
+      text-decoration: none;
+      font-size: 0.55rem; /* mas maliit text */
+      transition: 0.3s ease;
+    }
+
+    .nav-item i {
+      font-size: 0.9rem; /* mas maliit icon */
+      display: block;
+      margin-bottom: 1px;
+    }
+
+    .nav-item:hover {
+      color: #e60000;
+      transform: translateY(-2px);
+    }
+
+    .nav-item.active {
+      color: #e60000;
+    }
+
+    h1 {
+      width: 100%;              
+      text-align: center;       
+      padding: 20px;            
+      font-size: 2.5rem;       
+      color: red;            
+      margin: 0;                
+    }
+
+    .intro {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      font-size: 1.1rem;
+      text-align: center;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 0;
+      flex: 1; /* para itulak ang footer pababa */
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background: #e60012;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -3px;
+    }
+
+    .timeline-item {
+      padding: 20px;
+      position: relative;
+      width: 50%;
+    }
+
+    .timeline-item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin: 10px 0;
+    }
+
+    .timeline-item.left { left: 0; }
+    .timeline-item.right { left: 50%; }
+
+    .timeline-content {
+      padding: 20px;
+      background: #fff;
+      position: relative;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      right: -12px;
+      background: #fff;
+      border: 4px solid #e60012;
+      top: 30px;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .timeline-item.right::after { left: -12px; }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    p { margin-top: 10px; }
+    small { display:block; font-size:0.8rem; margin-top:4px; opacity:0.7; }
+
+    /* Footer */
+    .footer {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      color: white;
+      text-align: center;
+      font-size: 0.75rem;
+      padding: 10px 5px;
+      margin-top: auto; /* nasa pinaka-baba */
+    }
+
+    .footer-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 5px;
+    }
+
+    .footer-icons a {
+      color: white;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+
+   <!-- NAVBAR -->
+  <nav class="navbar">
+    <!-- LOGO -->
+    <div class="navbar-left">
+      <img src="fa49dcaf6ae263e7e796590c6c610cd4.png" alt="Honda Logo">
+    </div>
+
+    <!-- NAV ICONS -->
+    <div class="navbar-right">
+      <a href="momeee.html" class="nav-item active">
+        <i class="fa-solid fa-house"></i>
+        Home
+      </a>
+
+      <!-- DROPDOWN FOR CARS -->
+      <div class="nav-dropdown">
+        <a href="momeee.html" class="nav-item">
+          <i class="fa-solid fa-car"></i>
+          Cars
+        </a>
+        <ul id="car-submenu"></ul>
+      </div>
+
+      <a href="motor.html" class="nav-item">
+        <i class="fa-solid fa-motorcycle"></i>
+        Motors
+      </a>
+      <a href="service.html" class="nav-item">
+        <i class="fa-solid fa-screwdriver-wrench"></i>
+        Services
+      </a>
+      <a href="contact.html" class="nav-item">
+        <i class="fa-solid fa-envelope"></i>
+        Contact
+      </a>
+      <a href="about.html" class="nav-item">
+        <i class="fa-solid fa-circle-info"></i>
+        About
+      </a>
+    </div>
+  </nav>
+
+  <!-- Intro Section -->
+  <div class="intro">
+    <h1> Honda Timeline</h1>
+    <p>
+      Honda began as a small company founded by Soichiro Honda in Japan after World War II. 
+      Starting with simple motorized bicycles, Honda grew into one of the world’s most 
+      innovative and respected manufacturers. From motorcycles and cars to aviation and 
+      robotics, Honda’s story is one of passion, determination, and continuous pursuit of 
+      mobility for everyone. Explore this timeline to see how Honda shaped the future of 
+      technology and transportation.
+    </p>
+  </div>
+
+  <!-- Timeline -->
+  <div class="timeline">
+    <div class="timeline-item left">
+      <div class="timeline-content">
+        <h3>1949 — Honda Dream D-Type</h3>
+        <img src="Honda_Dream_D (1).jpg" alt="Honda Dream D-Type">
+        <p>Honda’s first complete motorcycle, the Dream D-Type, marked the beginning of Honda’s journey in two-wheeled mobility.</p>
+        <small>Source: Wikimedia Commons</small>
+      </div>
+    </div>
+
+    <div class="timeline-item right">
+      <div class="timeline-content">
+        <h3>1963 — Honda T360 Mini Truck</h3>
+        <img src="Honda_T360_1963_in_Honda_Collection_Hall.jpg" alt="Honda T360">
+        <p>The T360 was Honda’s first production automobile, a small but practical mini truck.</p>
+        <small>Source: Wikimedia Commons</small>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-content">
+        <h3>1963 — Honda S500 Sports Car</h3>
+        <img src="1964_Honda_S500.jpg" alt="Honda S500">
+        <p>The Honda S500 was Honda’s first passenger sports car, showcasing innovation and engineering skill.</p>
+        <small>Source: Wikimedia Commons</small>
+      </div>
+    </div>
+
+    <div class="timeline-item right">
+      <div class="timeline-content">
+        <h3>1965 — Honda RA272 Formula 1</h3>
+        <img src="1600px-2006_SAG_-_F1_Honda_RA272_1965_-01.jpeg" alt="Honda RA272 F1">
+        <p>The Honda RA272 achieved Honda’s first Formula One victory at the 1965 Mexican Grand Prix.</p>
+        <small>Source: Wikimedia Commons</small>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-content">
+        <h3>1969 — Honda CB750</h3>
+        <img src="Honda_CB750.jpeg" alt="Honda CB750">
+        <p>Known as the world’s first mass-market superbike, the CB750 set new standards in motorcycling.</p>
+        <small>Source: Wikimedia Commons</small>
+      </div>
+    </div>
+
+    <div class="timeline-item right">
+      <div class="timeline-content">
+        <h3>1972 — First Generation Honda Civic</h3>
+        <img src="Honda_Civic_1st_gen._001.jpeg" alt="Honda Civic 1972">
+        <p>The Civic became Honda’s most iconic compact car, known for efficiency and practicality.</p>
+        <small>Source: Wikimedia Commons</small>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-content">
+        <h3>1976 — First Generation Honda Accord</h3>
+        <img src="Accord_1st_Gen_Hatchback_right_front.jpg" alt="Honda Accord 1976">
+        <p>The Honda Accord debuted as a larger, more comfortable model that expanded Honda’s car lineup.</p>
+        <small>Source: Wikimedia Commons</small>
+      </div>
+    </div>
+
+    <div class="timeline-item right">
+      <div class="timeline-content">
+        <h3>1990 — Honda NSX</h3>
+        <img src="Honda_NSX_red.jpg" alt="Honda NSX">
+        <p>The NSX was Japan’s first true supercar, combining performance with Honda’s reliability.</p>
+        <small>Source: Wikimedia Commons</small>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-content">
+        <h3>1999 — Honda Insight Hybrid</h3>
+        <img src="1999_Honda_Insight_is_the_first_hybrid_car_launched_in_the_UK.jpg" alt="Honda Insight 1999">
+        <p>The Insight became Honda’s first mass-produced hybrid car, pioneering eco-friendly technology.</p>
+        <small>Source: Wikimedia Commons</small>
+      </div>
+    </div>
+
+    <div class="timeline-item right">
+      <div class="timeline-content">
+        <h3>2000s — ASIMO Robot</h3>
+        <img src="HONDA_ASIMO.jpg" alt="Honda ASIMO">
+        <p>Honda introduced ASIMO, a humanoid robot symbolizing Honda’s advances in robotics.</p>
+        <small>Source: Wikimedia Commons</small>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-content">
+        <h3>2008 — Honda FCX Clarity</h3>
+        <img src="Honda_FCX_Clarity_(5224014261).jpg" alt="Honda FCX Clarity">
+        <p>The FCX Clarity was a groundbreaking hydrogen fuel cell vehicle, emphasizing sustainability.</p>
+        <small>Source: Wikimedia Commons</small>
+      </div>
+    </div>
+
+    <div class="timeline-item right">
+      <div class="timeline-content">
+        <h3>2016 — HondaJet</h3>
+        <img src="Hondajet_HA-420_‘M-HNDA’_(35507038531).jpg" alt="HondaJet">
+        <p>The HondaJet represented Honda’s entry into aviation, combining efficiency and luxury.</p>
+        <small>Source: Wikimedia Commons</small>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-content">
+        <h3>2020 — Honda e</h3>
+        <img src="2020_Honda_E_Advance.jpg" alt="Honda e 2020">
+        <p>The Honda e is Honda’s compact electric city car, showcasing futuristic design and EV innovation.</p>
+        <small>Source: Wikimedia Commons</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-icons">
+      <a href="https://www.facebook.com/Honda" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/honda/" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@honda" target="_blank"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p>© 2025 Honda Philippines. All rights reserved.</p>
+    <p>This website is for project purposes only</p>
+  </footer>
+
+</body>
+</html>
